@@ -7,7 +7,7 @@
 
    - You can create as many componens as you need
 
-   - You can only use included libraries: tailwind, Luxon and Melt UI
+   - You can only use included libraries: Tailwind, Luxon and Melt UI
 
 5. Once finished, zip the src folder and upload it to Notion
 
