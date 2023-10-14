@@ -27,6 +27,7 @@
 	"type": "module",
 	"dependencies": {
 		"@melt-ui/svelte": "^0.55.0",
+		"lucide-svelte": "^0.287.0",
 		"luxon": "^3.4.3"
 	}
 }
