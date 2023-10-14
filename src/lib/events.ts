@@ -69,7 +69,7 @@ export const Appointments: Appointment[] = [
 	{
 		id: 'db234404-5431-4d46-ae79-67edfff52188',
 		title: 'Appointment with Jeanette Dibbert',
-		start: '2023-10-11T14:00:00.000+02:00',
+		start: '2023-10-11T14:15:00.000+02:00',
 		end: '2023-10-11T14:30:00.000+02:00',
 		professionalId: '8594e03f-a283-4e2d-8e1b-d51d1f58cd77',
 		professionalName: 'Marc',
@@ -256,8 +256,8 @@ export const Appointments: Appointment[] = [
 	{
 		id: '55a72ce5-e172-4fa0-ac48-e003f7500751',
 		title: 'Appointment with Bernadette Maggio',
-		start: '2023-10-16T08:00:00.000+02:00',
-		end: '2023-10-16T08:15:00.000+02:00',
+		start: '2023-10-16T08:15:00.000+02:00',
+		end: '2023-10-16T09:00:00.000+02:00',
 		professionalId: '8594e03f-a283-4e2d-8e1b-d51d1f58cd77',
 		professionalName: 'Marc',
 		patientId: '9097da48-3f2d-4e95-8cab-cde931618a0a',
@@ -333,8 +333,8 @@ export const Appointments: Appointment[] = [
 	{
 		id: '2984d338-6c93-488d-bf32-def47e43f948',
 		title: 'Appointment with Danielle Hayes',
-		start: '2023-10-18T13:00:00.000+02:00',
-		end: '2023-10-18T13:30:00.000+02:00',
+		start: '2023-10-18T13:45:00.000+02:00',
+		end: '2023-10-18T14:15:00.000+02:00',
 		professionalId: '8594e03f-a283-4e2d-8e1b-d51d1f58cd77',
 		professionalName: 'Marc',
 		patientId: 'ac22582d-e994-4a34-b3da-54cc516cf88d',
@@ -487,8 +487,8 @@ export const Appointments: Appointment[] = [
 	{
 		id: '6c19d496-9ff3-463f-80f2-9ddb18fcc0c0',
 		title: 'Appointment with Mr. Jamie Heaney',
-		start: '2023-10-25T09:00:00.000+02:00',
-		end: '2023-10-25T10:30:00.000+02:00',
+		start: '2023-10-25T09:30:00.000+02:00',
+		end: '2023-10-25T10:15:00.000+02:00',
 		professionalId: '8594e03f-a283-4e2d-8e1b-d51d1f58cd77',
 		professionalName: 'Marc',
 		patientId: '6544f90d-c3a7-4e0f-92ad-61409e03a459',
