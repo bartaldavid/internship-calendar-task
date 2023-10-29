@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div class="grid grid-cols-8 w-full gap-1">
+  <div class="grid grid-cols-[max-content_repeat(7,1fr)] w-full gap-1">
     <div />
 
     {#each daysInCurrentWeek as day}
@@ -56,7 +56,9 @@
       {/each}
     </ol>
 
-    {#each daysInCurrentWeek as day}
+    <!-- Each day is an item in the CSS grid, this is easier to maintain than if every hour was separate.
+    This way I can position every appointment relative to midnight on their date and fix overlaps. -->
+    {#each daysInCurrentWeek as day (day.toISO())}
       {@const events = appointmentsDateTime.filter(
         (appointment) =>
           appointment.start.hasSame(day, "day") ||
