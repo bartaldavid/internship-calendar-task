@@ -1,12 +1,68 @@
-<script lang='ts'>
+<script lang="ts">
   import { DateTime } from "luxon";
-  import { createDialog } from '@melt-ui/svelte'
-  import { Appointments } from "./events";
-  import { Calendar } from "lucide-svelte"
+  import { ChevronLeft, ChevronRight } from "lucide-svelte";
+  import { appointmentsDateTime } from "./event-utils";
+  import Day from "./Day.svelte";
+
+  // Height of one minute in pixels. Stores this as a variable so we can implement zooming later.
+  const minuteHeight = 1;
+
+  let startOfWeek = DateTime.local(2023, 10, 16).startOf("week");
+
+  $: daysInCurrentWeek = [...Array(7).keys()].map((day) =>
+    startOfWeek.plus({ day })
+  );
+
+  function changeWeek(amount: number) {
+    startOfWeek = startOfWeek.plus({ week: amount });
+  }
 </script>
 
-<!-- YOUR WORK STARTS HERE -->
-<div class="bg-white rounded-lg shadow-lg w-full h-full flex flex-col gap-3 items-center justify-center">
-  <Calendar size='45' />
-  <p class="text-5xl text-center">Turn this into a calendar</p>
-</div>
+<main
+  class="bg-white rounded-lg shadow-lg w-full h-full flex flex-col overflow-y-scroll p-4"
+>
+  <div class="flex gap-2 items-center mb-2">
+    <button on:click={() => changeWeek(-1)} aria-label="Previous week"
+      ><ChevronLeft /></button
+    >
+    <button on:click={() => changeWeek(+1)} aria-label="Next week"
+      ><ChevronRight /></button
+    >
+    <div>
+      <span class="text-xl"
+        >{startOfWeek.toLocaleString({ month: "long", year: "numeric" })}</span
+      >
+      <span>Timezone: {startOfWeek.zoneName}</span>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-8 w-full gap-1">
+    <div />
+
+    {#each daysInCurrentWeek as day}
+      <div class="flex items-baseline gap-2 justify-center">
+        <span class="text-3xl">{day.day}</span>
+        <span>{day.weekdayShort}</span>
+      </div>
+    {/each}
+
+    <ol>
+      {#each [...Array(24).keys()] as hour}
+        <li class="text-gray-500 text-sm text-end pr-2 font-light">
+          <div style:height={`${minuteHeight * 60}px`}>
+            {hour}:00
+          </div>
+        </li>
+      {/each}
+    </ol>
+
+    {#each daysInCurrentWeek as day}
+      {@const events = appointmentsDateTime.filter(
+        (appointment) =>
+          appointment.start.hasSame(day, "day") ||
+          appointment.end.hasSame(day, "day")
+      )}
+      <Day {events} {minuteHeight} />
+    {/each}
+  </div>
+</main>
