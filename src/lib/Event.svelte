@@ -20,6 +20,11 @@
   };
 </script>
 
+<!-- @component
+Displays an event in the calendar and its details if clicked in a dialog. 
+Must have a parent (day) with relative positioning since this is using position: absolute.
+ -->
+
 <button
   class={`absolute flex p-2 rounded items-center font-semibold border-l-4 z-10 hover:shadow-md text-xs ${
     statusStyle[event.status]

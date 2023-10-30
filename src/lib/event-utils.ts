@@ -14,6 +14,7 @@ export interface ResolvedEvent extends AppointmentDT {
   index: number;
 }
 
+// Resolves overlaps in an array of events
 export function resolveOverlaps(events: AppointmentDT[]) {
   // Add index and maxOverlap to each event
   const eventsWithIndices = events

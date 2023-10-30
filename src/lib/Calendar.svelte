@@ -4,7 +4,7 @@
   import { appointmentsDateTime } from "./event-utils";
   import Day from "./Day.svelte";
 
-  // Height of one minute in pixels. Stores this as a variable so we can implement zooming later.
+  // Height of one minute in pixels. Stores this as a variable in a single place so we can implement zooming later.
   const minuteHeight = 1;
 
   let startOfWeek = DateTime.local(2023, 10, 16).startOf("week");
