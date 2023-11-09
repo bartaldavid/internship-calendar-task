@@ -3,13 +3,16 @@
   import { ChevronLeft, ChevronRight } from "lucide-svelte";
   import { appointmentsDateTime } from "./event-utils";
   import Day from "./Day.svelte";
+  import Toolbar from "./Toolbar.svelte";
 
   // Height of one minute in pixels. Stores this as a variable in a single place so we can implement zooming later.
   const minuteHeight = 1;
 
-  let startOfWeek = DateTime.local(2023, 10, 16).startOf("week");
+  // This is hardcoded here to 16th of October since that's the first day of the middle week of the events. Can also be set to "current week".
+  let startOfWeek = DateTime.local().startOf("week");
+  let showWeekend = true;
 
-  $: daysInCurrentWeek = [...Array(7).keys()].map((day) =>
+  $: daysInCurrentWeek = [...Array(showWeekend ? 7 : 5).keys()].map((day) =>
     startOfWeek.plus({ day })
   );
 
@@ -21,22 +24,16 @@
 <main
   class="bg-white rounded-lg shadow-lg w-full h-full flex flex-col overflow-y-scroll p-4"
 >
-  <div class="flex gap-2 items-center mb-2">
-    <button on:click={() => changeWeek(-1)} aria-label="Previous week"
-      ><ChevronLeft /></button
-    >
-    <button on:click={() => changeWeek(+1)} aria-label="Next week"
-      ><ChevronRight /></button
-    >
-    <div>
-      <span class="text-xl"
-        >{startOfWeek.toLocaleString({ month: "long", year: "numeric" })}</span
-      >
-      <span>Timezone: {startOfWeek.zoneName}</span>
-    </div>
-  </div>
+  <Toolbar
+    {startOfWeek}
+    on:changeWeek={(e) => changeWeek(e.detail)}
+    on:toggleWeekend={(e) => (showWeekend = e.detail)}
+  />
 
-  <div class="grid grid-cols-[max-content_repeat(7,1fr)] w-full gap-1">
+  <div
+    class="grid w-full gap-1"
+    style:grid-template-columns={`max-content repeat(${daysInCurrentWeek.length}, 1fr)`}
+  >
     <div />
 
     {#each daysInCurrentWeek as day}

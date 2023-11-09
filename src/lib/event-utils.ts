@@ -14,13 +14,14 @@ export interface ResolvedEvent extends AppointmentDT {
   index: number;
 }
 
-// Resolves overlaps in an array of events
+// Resolves overlaps in an array of events in a day
 export function resolveOverlaps(events: AppointmentDT[]) {
   // Add index and maxOverlap to each event
   const eventsWithIndices = events
     .map((event) => ({
       ...event,
       index: 0,
+      // set this to 1 so that the width of the events can be set as 100% / maxOverlap
       maxOverlap: 1,
     }))
     .sort(
